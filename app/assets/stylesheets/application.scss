@@ -74,7 +74,15 @@ background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
   height: 300px;
  }
 
- .jumbotron h1,h2 {
+ .jumbotron h1 {
+  color: #EDFFEC;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+ }
+
+ .jumbotron h2 {
   color: #EDFFEC;
   text-align: center;
   margin-bottom: 30px;
@@ -89,3 +97,31 @@ background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
  .blog {
   margin-top: 30px;
  }
+
+ .footer {
+  margin-top: 2.9em;
+  padding-top: .3em;
+  border-top: 1px solid #eaeaea;
+ }
+
+ footer a {
+  color: #555;
+ }
+
+ footer a:hover {
+  color: #222;
+ }
+
+  footer small {
+    float: left;
+  }
+
+  footer ul {
+    float:right;
+    list-style: none;
+  }
+
+  footer ul li {
+    float: left;
+    margin-left: 15px;
+  }
