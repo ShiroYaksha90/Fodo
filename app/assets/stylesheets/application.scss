@@ -45,7 +45,6 @@
       #a6a6a6 100%
     );
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   float: left;
   font-size: 1.7em;
@@ -79,7 +78,7 @@
 }
 
 .jumbotron {
-  background-image: asset-url('cover-image002.png');
+  background-image: url('cover-image002.png');
   background-size: cover;
   height: 300px;
 }
