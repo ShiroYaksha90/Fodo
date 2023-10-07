@@ -1,0 +1,14 @@
+<!-- FILEPATH: /c:/Users/HP 612/Desktop/Module 5 ROR/foodo/app/views/recipes/index.html.erb -->
+
+<h1>All Recipes</h1>
+
+<ul>
+    <% @recipes.each do |recipe| %>
+        <li>
+            <%= link_to recipe.name, recipe %>
+            <p><%= recipe.description %></p>
+        </li>
+    <% end %>
+</ul>
+
+<%= link_to "New Recipe", new_recipe_path %>
