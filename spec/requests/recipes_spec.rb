@@ -29,6 +29,7 @@ RSpec.describe 'Recipes', type: :request do
       expect(response).to have_http_status(200)
       expect(response.body).to include(@recipe.name)
       expect(response.body).to include(@recipe.description)
+      expect(response.body).to include(@recipe.user.name)
     end
   end
 end
