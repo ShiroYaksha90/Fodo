@@ -23,5 +23,12 @@ RSpec.describe 'Recipes', type: :request do
       expect(response.body).to include(@recipe2.name)
       expect(response.body).to include(@recipe2.description)
     end
+
+    it 'should get recipes show' do
+      get recipe_path(@recipe)
+      expect(response).to have_http_status(200)
+      expect(response.body).to include(@recipe.name)
+      expect(response.body).to include(@recipe.description)
+    end
   end
 end
