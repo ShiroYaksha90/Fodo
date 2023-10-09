@@ -117,6 +117,11 @@ footer a {
   color: #555;
 }
 
+.card a {
+  color: #073b15;
+  text-decoration: none;
+}
+
 footer a:hover {
   color: #222;
 }
@@ -133,9 +138,4 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
-}
-
-.card a {
-  color: #073b15;
-  text-decoration: none;
 }
