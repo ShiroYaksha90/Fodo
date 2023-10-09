@@ -1,7 +1,4 @@
 class RecipesController < ApplicationController
-
-  
-
   def index
     @recipes = Recipe.all
   end
@@ -10,7 +7,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
-  def new 
+  def new
     @recipe = Recipe.new
   end
 
@@ -29,7 +26,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
-  def update 
+  def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update_attributes(recipe_params)
       redirect_to @recipe
@@ -38,14 +35,15 @@ class RecipesController < ApplicationController
     end
   end
 
-  def destroy 
+  def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to recipes_path
   end
 
   private
-    def recipe_params
-      params.require(:recipe).permit(:name, :description)
-    end
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :description)
+  end
 end
