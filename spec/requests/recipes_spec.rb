@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Recipes', type: :request do
   describe 'GET /recipes' do
     before(:each) do
-      @user = User.create(name: 'chef', email: 'chef@example.com', password: 'password' )
+      @user = User.create(name: 'chef', email: 'chef@example.com', password: 'password')
       @recipe = @user.recipes.build(name: 'Vegetable saute',
                                     description: 'Greate vegetable sautee, add vegetable nad oil')
       @recipe.save
