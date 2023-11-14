@@ -32,5 +32,15 @@ RSpec.describe 'Recipes', type: :request do
       expect(response.body).to include(@recipe.description)
       expect(response.body).to include(@recipe.user.name)
     end
+
+    it 'should get recipes new' do
+      get new_recipe_path
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:new)
+      expect(response.body).to include('Create recipe')
+      expect(response.body).to include('Title')
+      expect(response.body).to include('Description')
+      expect(response.body).to include('Create')
+    end
   end
 end
