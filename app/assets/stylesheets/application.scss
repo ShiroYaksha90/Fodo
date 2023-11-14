@@ -83,6 +83,20 @@
   height: 300px;
 }
 
+.gravatar {
+  float: left;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+.user-info {
+  margin-top: 30px;
+}
+
 .jumbotron h1 {
   color: #edffec;
   text-align: center;
@@ -138,4 +152,23 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
+}
+
+.recipe-container {
+  display: flex;
+  gap: 5%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.back-link {
+  color:#073b15;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #222;
+  text-decoration: underline;
 }
