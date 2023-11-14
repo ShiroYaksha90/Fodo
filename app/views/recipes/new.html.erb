@@ -1,0 +1,31 @@
+<%= render 'shared/page_title', title: 'Create Recipe'%>
+<div class="row">
+    <div class="col-md-12">
+        <%= form_for(@recipe, :html=>{class: 'form-horizantal', role: 'form'}) do |f| %>
+        <div class="form-group row">
+            <div class="control-label col-sm-1">
+                <%= f.label :Title%>
+            </div>
+            <div class="col-md-8">
+                <%= f.text_field :name, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="control-label col-sm-1">
+                <%= f.label :Description %>
+            </div>
+            <div class="col-md-8">
+                <%= f.text_area :description, rows: 10, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="offset-md-1 col-md-10">
+                <%= f.submit "Create", class: "btn btn-danger btn-lg btn-bg col-3" %>
+            </div>
+        </div>
+        <% end %>
+        <div class='col-md-4 offset-1 fs-4'>
+            [ <%= link_to 'Back', recipes_path, class: 'back-link' %> ]
+        </div>
+    </div>
+</div>
