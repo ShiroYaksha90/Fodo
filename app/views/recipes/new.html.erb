@@ -4,18 +4,18 @@
         <%= form_for(@recipe, :html=>{class: 'form-horizantal', role: 'form'}) do |f| %>
         <div class="form-group row">
             <div class="control-label col-sm-1">
-                <%= f.label :Title%>
+                <%= f.label :Title, class: 'fw-bold match-color'%>
             </div>
             <div class="col-md-8">
-                <%= f.text_field :name, class: 'form-control' %>
+                <%= f.text_field :name, placeholder: 'Recipe Name', class: 'form-control' %>
             </div>
         </div>
         <div class="form-group row">
             <div class="control-label col-sm-1">
-                <%= f.label :Description %>
+                <%= f.label :Description, class: 'fw-bold match-color' %>
             </div>
             <div class="col-md-8">
-                <%= f.text_area :description, rows: 10, class: 'form-control' %>
+                <%= f.text_area :description, rows: 10, placeholder: 'Enter Steps', class: 'form-control' %>
             </div>
         </div>
         <div class="form-group">
@@ -25,7 +25,7 @@
         </div>
         <% end %>
         <div class='col-md-4 offset-1 fs-4'>
-            [ <%= link_to 'Back', recipes_path, class: 'back-link' %> ]
+            [ <%= link_to 'Back', recipes_path, class: 'match-color back-link' %> ]
         </div>
     </div>
 </div>
