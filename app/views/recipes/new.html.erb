@@ -1,4 +1,23 @@
 <%= render 'shared/page_title', title: 'Create Recipe'%>
+<% if @recipe.errors.any? %>
+<div class="row my-3">
+    <div class="col-md-8 offset-2">
+        <div class="card bg-danger bg-opacity-25">
+            <div class="card-body">
+                <h2 class="card-title text-danger">
+                <%= pluralize(@recipe.errors.count, 'error')%>
+                Prevented this <%= @recipe.class%> from being saved:
+                </h1>
+                <ol>
+                    <% @recipe.errors.full_messages.each do |error|%>
+                    <li class="text-danger"><%= error%></li>
+                    <%end%>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<%end%>
 <div class="row">
     <div class="col-md-12">
         <%= form_for(@recipe, :html=>{class: 'form-horizantal', role: 'form'}) do |f| %>
