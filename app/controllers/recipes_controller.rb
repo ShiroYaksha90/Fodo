@@ -15,9 +15,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = User.first
     if @recipe.save
-      flash[:notice] = 'Recipe was successfully created.'
+      flash[:success] = 'Recipe was successfully created.'
       redirect_to recipe_path(@recipe)
     else
+      flash[:danger] = 'Prevented this Recipe from being saved'
       render :new, status: :unprocessable_entity
     end
   end
