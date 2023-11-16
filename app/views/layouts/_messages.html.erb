@@ -1,0 +1,9 @@
+<div class="row mt-3">
+    <div class="col-md-10 offset-1">
+        <% flash.each do |name,msg|%>
+        <div class="alert alert-<%= name %> alert-dismissible fade show" role="alert">
+            <%= msg %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <%end%>
+    </div>
+</div>
