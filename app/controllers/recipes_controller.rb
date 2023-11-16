@@ -13,12 +13,12 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = User.first
     if @recipe.save
-      # do something
-      redirect_to @recipe
+      flash[:notice] = 'Recipe was successfully created.'
+      redirect_to recipe_path(@recipe)
     else
-      # do something else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
