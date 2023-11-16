@@ -42,5 +42,31 @@ RSpec.describe 'Recipes', type: :request do
       expect(response.body).to include('Description')
       expect(response.body).to include('Create')
     end
+
+    it "creates a valid recipe" do
+      get new_recipe_path
+      expect(response).to render_template(:new)
+      expect {
+        post recipes_path, params: { recipe: { name: "Chocolate Chip Cookies", description: "Best cookies ever!" } }
+    }.to change(Recipe, :count).by(1)
+      expect(response).to redirect_to(recipe_path(Recipe.last))
+      follow_redirect!
+      expect(response).to render_template(:show)
+      expect(response.body).to include('Recipe was successfully created.')
+      expect(response.body).to include("#{Recipe.last.name.capitalize}")
+      expect(response.body).to include("#{Recipe.last.description}")
+    end
+
+    it "rejects invalid recipe submissions" do
+      get new_recipe_path
+      expect(response).to render_template(:new)
+      expect {
+        post recipes_path, params: { recipe: { name: "", description: "" } }
+      }.to_not change(Recipe, :count)
+      expect(response).to render_template(:new)
+      expect(response.body).to include('Prevented this Recipe from being saved')
+      expect(response.body).to include('Name can&#39;t be blank')
+      expect(response.body).to include('Description can&#39;t be blank')
+    end
   end
 end
