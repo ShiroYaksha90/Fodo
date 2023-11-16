@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Pages", type: :feature do
+RSpec.feature 'Pages', type: :feature do
   scenario 'should display home page' do
     visit '/'
     expect(page).to have_selector('h1', text: 'Welcome to Foodo App')
