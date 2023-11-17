@@ -4,19 +4,31 @@
         <div class="card-body">
             <h4 class="center description"><strong>Steps: </strong></h4>
             <hr/>
-            <%= content_tag :p, simple_format(@recipe.description), class: "text-start mb-0"%>
-            <div class="pull-right">
-                <p class="text-start mb-0">
-                    Created by:
-                </p>
-                <p class="center">
-                    <%= link_to gravatar_for(@recipe.user), recipe_path(@recipe) %>
-                </p>
-            </div>
-            <p class="text-start"><small><%= @recipe.user.name%></small></p>
-            <p class="text-end">
-                Created <%= time_ago_in_words(@recipe.created_at)%> ago 
-            </p>
+            <%= content_tag :p, simple_format(@recipe.description, class: "text-start")%>
+            <div class="row">
+                <div class="recipe-actions text-start">
+                    <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-xs btn-warning btn-bg text-white' %>
+                    <%= link_to 'Destroy', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger btn-bg text-white' %>
+                </div>
+                <div class="d-flex flex-column align-items-end">
+                        <div class="col-md-3 text-start">
+        <p>Created by:</p>
+      <section class="">
+        <%= gravatar_for(@recipe.user)%>
+      </section>
+    </div>
+    <div class="col-md-3 text-start mt-3">
+        <%= content_tag :p, @recipe.user.name%>
+      <p>
+        <span class="quiet"><small>about 
+
+            <%= time_ago_in_words(@recipe.created_at) %> 
+
+           ago</small></span>
+      </p> 
+    </div>
+                </div>
+  </div>
         </div>
     </div>
 </div>
