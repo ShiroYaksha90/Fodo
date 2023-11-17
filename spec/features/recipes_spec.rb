@@ -12,8 +12,14 @@ RSpec.feature 'Recipes', type: :feature do
     expect(page).to have_selector('h1', text: 'Showing all recipes')
     expect(page).to have_content(@recipe.name)
     expect(page).to have_content(@recipe.description)
+    expect(page).to have_link(@recipe.name, href: recipe_path(@recipe))
+    expect(page).to have_selector('img', class: 'gravatar')
+    expect(page).to have_link('Edit', href: edit_recipe_path(@recipe))
+    expect(page).to have_link('Destroy', href: recipe_path(@recipe))
     expect(page).to have_content(@recipe2.name)
     expect(page).to have_content(@recipe2.description)
+    expect(page).to have_link(@recipe2.name, href: recipe_path(@recipe2))
+    expect(page).to have_selector('img', class: 'gravatar')
   end
 
   scenario 'should display recipe' do
@@ -35,5 +41,21 @@ RSpec.feature 'Recipes', type: :feature do
     expect(page).to have_selector('textarea', id: 'recipe_description')
     expect(page).to have_button('Create', type: 'submit')
     expect(page).to have_selector('a', text: 'Back')
+    expect(page).to have_link('Back', href: recipes_path)
+  end
+
+  scenario 'should display recipe edit form' do
+    @user = User.create(name: 'foo', email: 'bar@exampl.com', password: 'password')
+    @recipe = @user.recipes.build(name: 'Vegetable saute',description: 'Greate vegetable sautee, add vegetable nad oil')
+    @recipe.save
+    visit edit_recipe_path(@recipe)
+    expect(page).to have_selector('h1', text: 'Edit recipe')
+    expect(page).to have_selector('label', text: 'Title')
+    expect(page).to have_selector('label', text: 'Description')
+    expect(page).to have_selector('input', id: 'recipe_name')
+    expect(page).to have_selector('textarea', id: 'recipe_description')
+    expect(page).to have_button('Edit', type: 'submit')
+    expect(page).to have_selector('a', text: 'Back')
+    expect(page).to have_link('Back', href: recipes_path)
   end
 end
