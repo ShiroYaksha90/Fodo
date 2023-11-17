@@ -15,7 +15,7 @@ RSpec.feature 'Recipes', type: :feature do
     expect(page).to have_link(@recipe.name, href: recipe_path(@recipe))
     expect(page).to have_selector('img', class: 'gravatar')
     expect(page).to have_link('Edit', href: edit_recipe_path(@recipe))
-    expect(page).to have_link('Destroy', href: recipe_path(@recipe))
+    expect(page).to have_button('Delete', type: 'submit')
     expect(page).to have_content(@recipe2.name)
     expect(page).to have_content(@recipe2.description)
     expect(page).to have_link(@recipe2.name, href: recipe_path(@recipe2))
@@ -30,6 +30,7 @@ RSpec.feature 'Recipes', type: :feature do
     visit "/recipes/#{@recipe.id}"
     expect(page).to have_selector('h1', text: @recipe.name.to_s)
     expect(page).to have_selector('p', text: @recipe.description.to_s)
+    expect(page).to have_selector('a', text: 'Back to recipes list')
   end
 
   scenario 'should display new recipe form' do
@@ -39,7 +40,7 @@ RSpec.feature 'Recipes', type: :feature do
     expect(page).to have_selector('label', text: 'Description')
     expect(page).to have_selector('input', id: 'recipe_name')
     expect(page).to have_selector('textarea', id: 'recipe_description')
-    expect(page).to have_button('Create', type: 'submit')
+    expect(page).to have_selector('input', class: 'btn btn-danger btn-lg btn-bg col-3')
     expect(page).to have_selector('a', text: 'Back')
     expect(page).to have_link('Back', href: recipes_path)
   end
@@ -54,7 +55,7 @@ RSpec.feature 'Recipes', type: :feature do
     expect(page).to have_selector('label', text: 'Description')
     expect(page).to have_selector('input', id: 'recipe_name')
     expect(page).to have_selector('textarea', id: 'recipe_description')
-    expect(page).to have_button('Edit', type: 'submit')
+    expect(page).to have_selector('input', class: 'btn btn-danger btn-lg btn-bg col-3')
     expect(page).to have_selector('a', text: 'Back')
     expect(page).to have_link('Back', href: recipes_path)
   end
