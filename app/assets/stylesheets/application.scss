@@ -83,6 +83,16 @@
   height: 300px;
 }
 
+.gravatar {
+  float: left;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.user-info {
+  margin-top: 30px;
+}
+
 .jumbotron h1 {
   color: #edffec;
   text-align: center;
@@ -138,4 +148,19 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.match-color,
+.back-link {
+  color: #073b15;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #222;
+  text-decoration: underline;
 }

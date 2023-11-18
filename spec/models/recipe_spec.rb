@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
   before(:each) do
-    @user = User.create(name: 'Test User', email: 'tester@gmail.com')
+    @user = User.create(name: 'Test User', email: 'tester@gmail.com', password: 'password')
     @recipe = @user.recipes.build(name: 'Test Recipe', description: 'Test Recipe Description')
+    @recipe.save
   end
 
   it 'is valid with valid attributes' do
