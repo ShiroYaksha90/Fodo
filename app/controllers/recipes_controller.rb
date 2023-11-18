@@ -4,8 +4,7 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @recipe = Recipe.new
@@ -23,8 +22,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @recipe.update(recipe_params)

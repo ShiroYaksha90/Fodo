@@ -1,17 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe "RecipesEdits", type: :request do
-  describe "GET /recipes_edits" do
+RSpec.describe 'RecipesEdits', type: :request do
+  describe 'GET /recipes_edits' do
     before(:each) do
       @user = User.create!(name: 'example test', email: 'testexample@example.com', password: 'password')
-      @recipe = @user.recipes.build(name: 'Vegetable saute', description: 'Greate vegetable sautee, add vegetable and oil')
+      @recipe = @user.recipes.build(name: 'Vegetable saute',
+                                    description: 'Greate vegetable sautee, add vegetable and oil')
       @recipe.save
     end
-    it "works! (now write some real specs)" do
+    it 'works! (now write some real specs)' do
       get edit_recipe_path(@recipe)
       expect(response).to have_http_status(200)
     end
-    it "displays recipe edit form" do
+    it 'displays recipe edit form' do
       get edit_recipe_path(@recipe)
       expect(response).to render_template(:edit)
       expect(response.body).to include('Edit recipe')
@@ -20,7 +21,7 @@ RSpec.describe "RecipesEdits", type: :request do
       expect(response.body).to include('Edit')
     end
 
-    it "updates a valid recipe" do
+    it 'updates a valid recipe' do
       get edit_recipe_path(@recipe)
       expect(response).to render_template(:edit)
       expect(response.body).to include('Edit recipe')
@@ -32,7 +33,7 @@ RSpec.describe "RecipesEdits", type: :request do
       expect(response.body).to include('Updated name')
       expect(response.body).to include('Updated description')
     end
-    it "rejects invalid recipe update" do
+    it 'rejects invalid recipe update' do
       get edit_recipe_path(@recipe)
       expect(response).to render_template(:edit)
       expect(response.body).to include('Edit recipe')
