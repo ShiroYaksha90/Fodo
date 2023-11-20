@@ -5,6 +5,7 @@ RSpec.describe Recipe, type: :model do
     @user = User.create(name: 'Test User', email: 'tester@gmail.com', password: 'password')
     @recipe = @user.recipes.build(name: 'Test Recipe', description: 'Test Recipe Description')
     @recipe.save
+    @recipe.ingredients.create(name: 'Test Ingredient')
   end
 
   it 'is valid with valid attributes' do
@@ -34,5 +35,13 @@ RSpec.describe Recipe, type: :model do
   it 'Recipe without user_id should be invalid' do
     @recipe.user_id = nil
     expect(@recipe).to_not be_valid
+  end
+  it 'checks if the recipe has ingredients' do
+    expect(@recipe.ingredients.count).to eq(1)
+    expect(@recipe.ingredients.first.name).to eq('Test Ingredient')
+  end
+  it 'checks if the recipe has recipe_ingredients' do
+    expect(@recipe.recipe_ingredients.count).to eq(1)
+    expect(@recipe.recipe_ingredients.first.ingredient.name).to eq('Test Ingredient')
   end
 end
