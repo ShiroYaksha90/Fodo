@@ -6,6 +6,7 @@ RSpec.describe Recipe, type: :model do
     @recipe = @user.recipes.build(name: 'Test Recipe', description: 'Test Recipe Description')
     @recipe.save
     @recipe.ingredients.create(name: 'Test Ingredient')
+    @comment = @recipe.comments.create(user_id: @user.id, content: 'Test Comment')
   end
 
   it 'is valid with valid attributes' do
@@ -43,5 +44,13 @@ RSpec.describe Recipe, type: :model do
   it 'checks if the recipe has recipe_ingredients' do
     expect(@recipe.recipe_ingredients.count).to eq(1)
     expect(@recipe.recipe_ingredients.first.ingredient.name).to eq('Test Ingredient')
+  end
+  it 'checks if the recipe has comments' do
+    expect(@recipe.comments.count).to eq(1)
+    expect(@recipe.comments.first.content).to eq('Test Comment')
+  end
+  it 'checks if the recipe has users through comments' do
+    expect(@recipe.users.count).to eq(1)
+    expect(@recipe.users.first.name).to eq('Test User')
   end
 end
