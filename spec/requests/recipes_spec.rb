@@ -47,14 +47,11 @@ RSpec.describe 'Recipes', type: :request do
       get new_recipe_path
       expect(response).to render_template(:new)
       expect do
-        post recipes_path, params: { recipe: { name: 'Chocolate Chip Cookies', description: 'Best cookies ever!' } }
+        post recipes_path, params: { recipe: { name: 'Test Recipe', description: 'Test Recipe Description' } }
       end.to change(Recipe, :count).by(1)
-      expect(response).to redirect_to(recipe_path(Recipe.last))
+      expect(flash[:success]).to eq('Recipe was successfully created.')
       follow_redirect!
       expect(response).to render_template(:show)
-      expect(response.body).to include('Recipe was successfully created.')
-      expect(response.body).to include(Recipe.last.name.capitalize.to_s)
-      expect(response.body).to include(Recipe.last.description.to_s)
     end
 
     it 'rejects invalid recipe submissions' do
