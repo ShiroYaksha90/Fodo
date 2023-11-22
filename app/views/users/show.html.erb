@@ -1,0 +1,9 @@
+<%= render 'shared/page_title', title: "#{@user.name}'s Profile"%>
+
+<div class="row">
+  <div class="col d-flex justify-content-center my-3">
+    <%= gravatar_for @user%>
+  </div>
+</div>
+<h4 align="center"><%= @user.name.capitalize%>'s recipes</h4>
+<%= render 'recipes/recipe', obj: @user.recipes%>
