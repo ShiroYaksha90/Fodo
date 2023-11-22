@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
   before(:each) do
-    @user = User.create(name: 'Test User', email: 'tester@gmail.com', password: 'password')
+    @user = User.create(name: 'Test User', email: 'tester@gmail.com', password: 'password', password_confirmation: 'password')
     @recipe = @user.recipes.build(name: 'Test Recipe', description: 'Test Recipe Description')
     @recipe.save
     @recipe.ingredients.create(name: 'Test Ingredient')
-    @comment = @recipe.comments.create(user_id: @user.id, content: 'Test Comment')
+    @comment = @recipe.comments.create(content: 'Test Comment', user_id: @user.id)
   end
 
   it 'is valid with valid attributes' do
@@ -50,7 +50,7 @@ RSpec.describe Recipe, type: :model do
     expect(@recipe.comments.first.content).to eq('Test Comment')
   end
   it 'checks if the recipe has users through comments' do
-    expect(@recipe.users.count).to eq(1)
-    expect(@recipe.users.first.name).to eq('Test User')
+    expect(@recipe.user).to eq(@user)
+    expect(@recipe.user.name).to eq('Test User')
   end
 end
