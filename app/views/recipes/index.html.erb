@@ -1,5 +1,4 @@
 <%= render 'shared/page_title', title: 'Showing all Recipes'%>
+    <%= paginate @recipes, theme: 'my_custom_theme', window: 3 %>
 <%= render 'recipe', obj: @recipes%>
-<div align="center">
-<%= paginate @recipes, theme: 'my_custom_theme' %>
-</div>
+    <%= paginate @recipes, theme: 'my_custom_theme', window: 3 %>
