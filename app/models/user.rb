@@ -12,4 +12,5 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_many :recipes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  paginates_per 5
 end
