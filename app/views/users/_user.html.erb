@@ -1,0 +1,15 @@
+<div align="center">
+  <% @users.each do |user| %>
+    <ul class="listing">
+      <div class="row d-block">
+        <div class="card col-10 col-sm-8 col-md-6 gap-1 p-2 align-self-center">
+          <li class="align-self-center"><%= link_to gravatar_for(user), user_path(user) %></li>
+          <li class="chef-title"><%= link_to user.name.capitalize, 
+                                         user_path(user) %></li>
+    <li><small><%= pluralize(user.recipes.count, "recipe") if user.recipes %>
+            </small></li>
+        </div>
+      </div>
+    </ul>      
+  <% end %>
+</div>
