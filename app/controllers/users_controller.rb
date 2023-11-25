@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def index
       @users = User.order(:name).page params[:page]
@@ -34,6 +34,12 @@ class UsersController < ApplicationController
         flash[:danger] = "Prevented this User from being updated"
         render 'edit', status: :unprocessable_entity
       end
+    end
+
+    def destroy
+      @user.destroy
+      flash[:success] = "User deleted"
+      redirect_to users_url
     end
 
     private
