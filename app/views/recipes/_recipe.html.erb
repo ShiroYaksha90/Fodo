@@ -12,15 +12,17 @@
                 <p class="card-text">
                     <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at)%> ago</small></span>
                 </p>
-                <div class="row">
-                    <div class="col-4 col-sm-4">
-                    <%= link_to "Edit", edit_recipe_path(recipe), class: 'btn btn-warning btn-sm btn-bg text-white w-100' %>
+                <% if logged_in? && current_user == recipe.user %>
+                    <div class="row">
+                        <div class="col-4 col-sm-4">
+                            <%= link_to "Edit", edit_recipe_path(recipe), class: 'btn btn-warning btn-sm btn-bg text-white w-100' %>
+                        </div>
+                        <div class="col-4 col-sm-4">
+                            <%= button_to 'Delete', recipe, method: :delete, data: { confirm: "Are you sure you want to delete this recipe"}, class: 'btn btn-danger btn-sm btn-bg text-white w-100' %>
+                        </div>
                     </div>
-                    <div class="col-4 col-sm-4">
-                    <%= button_to 'Delete', recipe, method: :delete, data: { confirm: "Are you sure you want to delete this recipe"}, class: 'btn btn-danger btn-sm btn-bg text-white w-100' %>
-                    </div>
-                </div>
-                </div>
+                <%end%>
+            </div>
         </div>
     </div>
 
