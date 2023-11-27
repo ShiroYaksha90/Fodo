@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_same_user, only: %i[edit update destroy]
     def index
       @users = User.order(:name).page params[:page]
     end
@@ -52,4 +52,10 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
+
+  def require_same_user
+    return if current_user == @user || current_user.admin?
+    flash[:danger] = 'You can only edit or delete your own account'
+    redirect_to users_path
+  end
 end
