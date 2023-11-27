@@ -7,7 +7,7 @@
             <%= content_tag :p, simple_format(@recipe.description, class: "text-start")%>
             <div class="row">
                 <div class="text-start d-flex gap-2">
-                  <% if logged_in? && current_user == @recipe.user %>
+                  <% if logged_in? && (current_user == @recipe.user || current_user.admin?) %>
                     <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-xs btn-warning btn-bg text-white' %>
                     <%= button_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger btn-bg text-white' %>
                   <% end %>
