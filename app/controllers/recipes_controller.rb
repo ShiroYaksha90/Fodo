@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :logged_in_user, only: %i[edit update destroy]
   before_action :require_user, except: %i[index show]
   def index
     @recipes = Recipe.order(:name).page params[:page]
@@ -50,10 +51,5 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :description)
   end
-
-  def require_user
-    return if current_user == @recipe.user || current_user.admin?
-    flash[:danger] = 'You can only edit or delete your own recipes'
-    redirect_to recipes_path
-  end
+  
 end
