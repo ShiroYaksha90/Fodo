@@ -1,9 +1,10 @@
 require 'rails_helper'
-
+require 'helpers/users_helper_spec'
 RSpec.describe "UsersEdits", type: :request do
   describe "GET /users_edits" do
     it "renders the edit form" do
       @user = User.create!(name: "Test User", email: "test@example.com", password: "password", password_confirmation: "password")
+      sign_in_as(@user, @user.password)
       get edit_user_path(@user)
       expect(response).to render_template(:edit)
       expect(response.body).to include("Edit user")
