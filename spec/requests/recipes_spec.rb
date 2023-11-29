@@ -36,6 +36,7 @@ RSpec.describe 'Recipes', type: :request do
     end
 
     it 'should get recipes new' do
+      expect(logged_in?).to be_truthy
       get new_recipe_path
       expect(response).to have_http_status(200)
       expect(response).to render_template(:new)
@@ -46,6 +47,7 @@ RSpec.describe 'Recipes', type: :request do
     end
 
     it 'creates a valid recipe' do
+      expect(logged_in?).to be_truthy
       get new_recipe_path
       expect(response).to render_template(:new)
       expect do
@@ -57,6 +59,7 @@ RSpec.describe 'Recipes', type: :request do
     end
 
     it 'rejects invalid recipe submissions' do
+      expect(logged_in?).to be_truthy
       get new_recipe_path
       expect(response).to render_template(:new)
       expect do
