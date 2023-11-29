@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+require 'helpers/users_helper_spec'
 RSpec.feature "UsersSignups", type: :feature do
   scenario "renders signup page" do
     visit signup_path
@@ -25,5 +25,12 @@ RSpec.feature "UsersSignups", type: :feature do
     expect(page).to have_selector('li', text:"Email can't be blank")
     expect(page).to have_selector('li', text:"Email is invalid")
     expect(page).to have_selector('li', text:"Password can't be blank")
+  end
+  scenario "successfully creates a new user" do
+    features_signup
+    expect(page).to have_selector('div.alert.alert-success.alert-dismissible', text:'Welcome to the Foodo App!')
+    expect(page).to have_selector('h1', text:"Foo's profile")
+    expect(page).to have_selector('img.gravatar')
+    expect(page).to have_selector('h4', text:"Foo's recipes")
   end
 end
