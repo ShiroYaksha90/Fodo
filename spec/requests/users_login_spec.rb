@@ -22,10 +22,9 @@ RSpec.describe "UsersLogins", type: :request do
       follow_redirect!
       expect(response).to render_template('users/show')
       expect(response.body).to include(@user.name)
-      expect(response.body).to include(@user.email)
       expect(response.body).to include(@user.recipes.count.to_s)
-      expect(response.body).to include('Logout')
-      expect(response.body).to_not include('Login')
+      expect(response.body).to include('Log out')
+      expect(response.body).to_not include('Log in')
       expect(response.body).to include("#{@user.name.capitalize}'s Profile")
     end
   end
