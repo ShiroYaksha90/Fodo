@@ -1,8 +1,12 @@
 require 'rails_helper'
-
+require 'helpers/recipes_helper_spec'
 RSpec.feature 'RecipesForms', type: :feature do
+  before(:each) do
+    @user = User.create(name: 'foo', email: 'foo@example.com', password: 'password', password_confirmation: 'password')
+    features_sign_in(@user.email, @user.password)
+  end
   scenario 'should display new recipe form' do
-    visit '/recipes/new'
+    visit new_recipe_path
     expect(page).to have_selector('h1', text: 'Create recipe')
     expect(page).to have_selector('label', text: 'Title')
     expect(page).to have_selector('label', text: 'Description')
@@ -14,7 +18,6 @@ RSpec.feature 'RecipesForms', type: :feature do
   end
 
   scenario 'should display recipe edit form' do
-    @user = User.create(name: 'foo', email: 'bar@exampl.com', password: 'password')
     @recipe = @user.recipes.build(name: 'Vegetable saute',
                                   description: 'Greate vegetable sautee, add vegetable nad oil')
     @recipe.save
