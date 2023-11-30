@@ -17,7 +17,7 @@
                         <div class="col-md-3 text-start">
         <p>Created by:</p>
       <section class="">
-        <%= gravatar_for(@recipe.user)%>
+        <%= link_to gravatar_for(@recipe.user), user_path(@recipe.user)%>
       </section>
     </div>
     <div class="col-md-3 text-start mt-3">
