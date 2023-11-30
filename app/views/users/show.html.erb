@@ -5,5 +5,9 @@
     <%= gravatar_for @user%>
   </div>
 </div>
-<h4 align="center"><%= @user.name.capitalize%>'s recipes</h4>
-<%= render 'recipes/recipe', obj: @user.recipes%>
+<% if @user.recipes.count != 0 %>
+  <h4 align="center"><%= @user.name.capitalize%>'s recipes</h4>
+  <%= render 'recipes/recipe', obj: @user.recipes%>
+<% else %>
+  <h4 align="center">No recipes yet</h4>
+<%end%>
