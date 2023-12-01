@@ -1,0 +1,4 @@
+<%= render 'shared/page_title', title: 'Available ingredients' %>
+<%= paginate @ingredients, theme: 'my_custom_theme', window: 3 %>
+<%= render 'ingredient', obj: @ingredients %>
+<%= paginate @ingredients, theme: 'my_custom_theme', window: 3 %>
