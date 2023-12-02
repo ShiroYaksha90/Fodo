@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     end
 
     def show
+      @user_recipes = @user.recipes.order(:name).page params[:page]
     end
 
     def edit
