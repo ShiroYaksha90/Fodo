@@ -3,7 +3,7 @@
 <% if @ingredient.recipes.count != 0 %>
   <h4 align="center" class="py-1">Recipes containing <%= @ingredient.name.capitalize%></h4>
 <%= paginate @ingredient_recipes, theme: 'my_custom_theme', window: 3 %>
-  <%= render 'recipes/recipe', obj: @ingredient.recipes%>
+  <%= render 'recipes/recipe', obj: @ingredient_recipes%>
 <%= paginate @ingredient_recipes, theme: 'my_custom_theme', window: 3 %>
 <% else %>
   <h4 align="center">No recipes yet</h4>
