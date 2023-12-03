@@ -3,7 +3,8 @@ require 'helpers/users_helper_spec'
 RSpec.describe 'RecipesDeletes', type: :request do
   describe 'GET /recipes_deletes' do
     before(:each) do
-      @user = User.create!(name: 'example test', email: 'test@example.com', password: 'password', password_confirmation: 'password')
+      @user = User.create!(name: 'example test', email: 'test@example.com', password: 'password',
+                           password_confirmation: 'password')
       sign_in_as(@user, @user.password)
       @recipe = @user.recipes.build(name: 'Vegetable saute',
                                     description: 'Greate vegetable sautee, add vegetable and oil')

@@ -25,7 +25,7 @@ RSpec.describe Ingredient, type: :model do
     expect(@ingredient.recipes.count).to eq(1)
     expect(@ingredient.recipes.first.name).to eq('Test Recipe')
   end
-  it'has many recipe_ingredients' do
+  it 'has many recipe_ingredients' do
     expect(@ingredient.recipe_ingredients.count).to eq(1)
     expect(@ingredient.recipe_ingredients.first.recipe.name).to eq('Test Recipe')
   end

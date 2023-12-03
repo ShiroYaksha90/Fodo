@@ -1,19 +1,20 @@
 require 'rails_helper'
 require 'helpers/users_helper_spec'
-RSpec.describe "UsersLogins", type: :request do
-  describe "GET /users_logins" do
-    it "rejects invalid login" do
+RSpec.describe 'UsersLogins', type: :request do
+  describe 'GET /users_logins' do
+    it 'rejects invalid login' do
       get login_path
       expect(response).to render_template('new')
-      post login_path, params: { session: { email: "", password: "" } }
+      post login_path, params: { session: { email: '', password: '' } }
       expect(response).to render_template('new')
       expect(logged_in?).to be_falsey
       expect(flash[:danger]).to be_present
       get root_path
       expect(flash[:danger]).to_not be_present
     end
-    it "accepts valid login" do
-      @user = User.create!(name: "Example User", email: "example@example.com", password: "password", password_confirmation: "password")
+    it 'accepts valid login' do
+      @user = User.create!(name: 'Example User', email: 'example@example.com', password: 'password',
+                           password_confirmation: 'password')
       get login_path
       expect(response).to render_template('new')
       post login_path, params: { session: { email: @user.email, password: @user.password } }

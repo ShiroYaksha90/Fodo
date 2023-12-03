@@ -3,7 +3,8 @@ require 'helpers/users_helper_spec'
 RSpec.describe 'RecipesEdits', type: :request do
   describe 'GET /recipes_edits' do
     before(:each) do
-      @user = User.create!(name: 'example test', email: 'testexample@example.com', password: 'password', password_confirmation: 'password')
+      @user = User.create!(name: 'example test', email: 'testexample@example.com', password: 'password',
+                           password_confirmation: 'password')
       sign_in_as(@user, @user.password)
       @recipe = @user.recipes.build(name: 'Vegetable saute',
                                     description: 'Greate vegetable sautee, add vegetable and oil')
@@ -11,7 +12,7 @@ RSpec.describe 'RecipesEdits', type: :request do
     end
     it 'works! (now write some real specs)' do
       get edit_recipe_path(@recipe)
-      
+
       expect(response).to have_http_status(200)
     end
     it 'displays recipe edit form' do

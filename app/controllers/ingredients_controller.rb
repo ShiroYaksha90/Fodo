@@ -1,34 +1,25 @@
 class IngredientsController < ApplicationController
-  before_action :set_ingredient, only: [:show, :edit, :update]
+  before_action :set_ingredient, only: %i[show edit update]
 
+  def new; end
 
-    def new
+  def create; end
 
-    end
+  def edit; end
 
-    def create
-      
-    end
+  def update; end
 
-    def edit
-      
-    end
+  def show
+    @ingredient_recipes = @ingredient.recipes.order(:name).page params[:page]
+  end
 
-    def update
-      
-    end
+  def index
+    @ingredients = Ingredient.order(:name).page params[:page]
+  end
 
-    def show
-        @ingredient_recipes = @ingredient.recipes.order(:name).page params[:page]
-    end
+  private
 
-    def index
-        @ingredients = Ingredient.order(:name).page params[:page]
-    end
-
-    private
-
-    def set_ingredient
-      @ingredient = Ingredient.find(params[:id])
-    end
+  def set_ingredient
+    @ingredient = Ingredient.find(params[:id])
+  end
 end
