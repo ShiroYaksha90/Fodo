@@ -1,13 +1,11 @@
 require 'rails_helper'
 require 'helpers/recipes_helper_spec'
 RSpec.feature 'Recipes', type: :feature do
-  scenario 'should display recipes' do
+  scenario 'should display all recipes' do
     @user = User.create(name: 'chef', email: 'example@example.com', password: 'password')
-    @recipe = @user.recipes.build(name: 'Vegetable saute',
-                                  description: 'Greate vegetable sautee, add vegetable nad oil')
-    @recipe.save
-    @recipe2 = @user.recipes.build(name: 'Chicken saute', description: 'Greate Chicken dish')
-    @recipe2.save
+    @recipe = @user.recipes.create(name: 'Vegetable saute',
+                                   description: 'Greate vegetable sautee, add vegetable nad oil')
+    @recipe2 = @user.recipes.create(name: 'Chicken saute', description: 'Greate Chicken dish')
     visit '/recipes'
     expect(page).to have_selector('h1', text: 'Showing all recipes')
     expect(page).to have_content(@recipe.name)
@@ -23,9 +21,8 @@ RSpec.feature 'Recipes', type: :feature do
   scenario 'should display recipe' do
     @user = User.create(name: 'chef', email: 'example@example.com', password: 'password')
     features_sign_in(@user.email, @user.password)
-    @recipe = @user.recipes.build(name: 'Vegetable saute',
-                                  description: 'Greate vegetable sautee, add vegetable nad oil')
-    @recipe.save
+    @recipe = @user.recipes.create(name: 'Vegetable saute',
+                                   description: 'Greate vegetable sautee, add vegetable nad oil')
     visit "/recipes/#{@recipe.id}"
     expect(page).to have_selector('h1', text: @recipe.name.to_s)
     expect(page).to have_selector('p', text: @recipe.description.to_s)
