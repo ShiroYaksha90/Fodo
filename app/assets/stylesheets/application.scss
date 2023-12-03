@@ -170,13 +170,13 @@ footer ul li {
   justify-content: center;
 }
 
+.pagination .page-link {
+  color: #073b15 !important;
+}
+
 .pagination .page-item.active .page-link {
   background-color: #1e766c2d !important;
   border-color: #1e766b !important;
-}
-
-.pagination .page-link {
-  color: #073b15 !important;
 }
 
 .listing {
@@ -185,7 +185,7 @@ footer ul li {
 }
 
 .chef-title {
-  color: #073B15;
+  color: #073b15;
   font-weight: bold;
   font-size: 1.25em;
 }
