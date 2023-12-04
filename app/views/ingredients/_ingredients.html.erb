@@ -9,7 +9,7 @@
             </small></li>
         <li class="col-4 col-sm-4 align-self-center">
           <% if logged_in? and current_user.admin? %>
-            <%= button_to 'Edit this ingredient', ingredient_path(ingredient), class: 'btn btn-warning btn-sm btn-bg text-white w-100' %>
+            <%= link_to 'Edit this ingredient', edit_ingredient_path(ingredient), class: 'btn btn-warning btn-sm btn-bg text-white w-100' %>
           <%end%>
         </li>
         </div>
