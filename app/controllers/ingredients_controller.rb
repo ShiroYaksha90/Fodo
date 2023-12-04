@@ -18,7 +18,15 @@ class IngredientsController < ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+    if @ingredient.update(ingredient_params)
+      flash[:success] = 'Ingredient updated successfully'
+      redirect_to @ingredient
+    else
+      flash[:danger] = 'Prevented this Ingredient from being updated'
+      render 'edit', status: :unprocessable_entity
+    end
+  end
 
   def show
     @ingredient_recipes = @ingredient.recipes.order(:name).page params[:page]
