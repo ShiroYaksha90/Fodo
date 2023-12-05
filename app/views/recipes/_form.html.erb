@@ -18,6 +18,13 @@
                 <%= f.text_area :description, rows: 10, placeholder: 'Enter Steps', class: 'form-control' %>
             </div>
         </div>
+        <div class="row">
+            <div class="offset-1 col-md-8 d-flex gap-3 mb-3">
+                <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cb| %>
+                    <% cb.label(class: 'checkbox-inline input_checkbox d-flex gap-1'){cb.check_box(class: "checkbox") + cb.text}%>
+                <%end%>
+            </div>
+        </div>
         <div class="form-group">
             <div class="offset-md-1 col-md-10">
                 <%= f.submit "Submit", class: "btn btn-danger btn-lg btn-bg col-3" %>
