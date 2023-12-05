@@ -6,7 +6,9 @@ class RecipesController < ApplicationController
     @recipes = Recipe.order(:name).page params[:page]
   end
 
-  def show; end
+  def show
+    @comments = @recipe.comments.order(:name).page params[:page]
+  end
 
   def new
     @recipe = Recipe.new
