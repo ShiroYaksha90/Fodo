@@ -13,7 +13,8 @@
                     <p>Ingredients: <%= render recipe.ingredients %></p>
                 <%end%>
                 <p class="card-text">
-                    <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at)%> ago</small> by <%= recipe.user.name.capitalize %></span>
+                    <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at)%> ago by <%= recipe.user.name.capitalize %>
+                                                                                                        | <%= pluralize(recipe.comments.count, 'Comment') %></small></span>
                 </p>
                 <% if logged_in? && (current_user == recipe.user || current_user.admin?) %>
                     <div class="row">
