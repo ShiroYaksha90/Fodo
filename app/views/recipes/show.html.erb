@@ -27,7 +27,7 @@
     <div class="col-md-3 text-start mt-3">
         <%= content_tag :p, @recipe.user.name%>
       <p>
-        <span class="quiet"><small>about 
+        <span class="quiet"><small> 
 
             <%= time_ago_in_words(@recipe.created_at) %> 
 
@@ -40,17 +40,17 @@
     </div>
 </div>
 
-<%if @recipe.comments !=0 %>
+<% if @recipe.comments.any? %>
   <div class="row">
-    <h3>Comments: </h3>
+    <h3 class="offset-2 mt-2 match-color">Comments: </h3>
     <div id="messages">
       <%= render 'comments/comments', object: @comments %>
     </div>
   </div>
 <% else %>
   <div class="row">
-    <div class="offset-1 col-md-8">
-      <h3>No Comments Yet!</h3>
+    <div class="offset-2 col-md-8 mt-2">
+      <h3 class="match-color">No Comments Yet!</h3>
       </div>
   </div>
 <% end %>
