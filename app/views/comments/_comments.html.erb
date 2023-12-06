@@ -1,0 +1,9 @@
+<div align="cente">
+    <%= paginate @comments, theme: 'my_custom_theme', window: 3 %>
+</div>
+<% @comments.each do |comment| %>
+    <%= render(partial: 'comments/comment', object: comment) %>
+<%end%>
+<div align="cente">
+    <%= paginate @comments, theme: 'my_custom_theme', window: 3 %>
+</div>
