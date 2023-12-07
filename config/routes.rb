@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   # devise_for :users
     root 'pages#home'
-    resources :recipes
+    resources :recipes do
+      resources :comments, only: [:create]
+    end
     resources :users, except: [:new]
     get '/signup', to: 'users#new'
     get '/login', to: 'sessions#new'
