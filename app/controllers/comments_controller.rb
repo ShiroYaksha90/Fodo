@@ -5,11 +5,11 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-        flash[:success] = 'Comment was created successfully'
-        redirect_to recipe_path(@recipe)
+      flash[:success] = 'Comment was created successfully'
+      redirect_to recipe_path(@recipe)
     else
-        flash[:danger] = 'Comment was not created'
-        redirect_to recipe_path(@recipe.id), status: :unprocessable_entity
+      flash[:danger] = 'Comment was not created'
+      redirect_to recipe_path(@recipe.id), status: :unprocessable_entity
     end
   end
 
