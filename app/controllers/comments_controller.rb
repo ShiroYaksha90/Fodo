@@ -8,8 +8,8 @@ class CommentsController < ApplicationController
         flash[:success] = 'Comment was created successfully'
         redirect_to recipe_path(@recipe)
     else
-        flash[:danger] = 'Comment was not created', :unprocessable_entity
-        redirect_to recipe_path(@recipe)
+        flash[:danger] = 'Comment was not created'
+        redirect_to recipe_path(@recipe.id), status: :unprocessable_entity
     end
   end
 
