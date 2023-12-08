@@ -5,23 +5,29 @@
             <h4 class="center description"><strong>Steps: </strong></h4>
             <hr/>
             <%= content_tag :p, simple_format(@recipe.description, class: "text-start")%>
+            <hr/>
+            <% if @recipe.ingredients.any? %>
+              <p class="text-start">Ingredients: <%= render @recipe.ingredients %></p>
+            <%end%>
             <div class="row">
                 <div class="text-start d-flex gap-2">
+                  <% if logged_in? && (current_user == @recipe.user || current_user.admin?) %>
                     <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-xs btn-warning btn-bg text-white' %>
-                    <%= button_to 'Destroy', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger btn-bg text-white' %>
+                    <%= button_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger btn-bg text-white' %>
+                  <% end %>
                     <%= link_to 'Back to recipes list', recipes_path, class: 'btn btn-xs btn-success btn-bg text-white' %>
                 </div>
                 <div class="d-flex flex-column align-items-end">
                         <div class="col-md-3 text-start">
         <p>Created by:</p>
       <section class="">
-        <%= gravatar_for(@recipe.user)%>
+        <%= link_to gravatar_for(@recipe.user), user_path(@recipe.user)%>
       </section>
     </div>
     <div class="col-md-3 text-start mt-3">
         <%= content_tag :p, @recipe.user.name%>
       <p>
-        <span class="quiet"><small>about 
+        <span class="quiet"><small> 
 
             <%= time_ago_in_words(@recipe.created_at) %> 
 
@@ -33,3 +39,43 @@
         </div>
     </div>
 </div>
+
+<% if logged_in? %>
+  <div class="row offset-md-1">
+      <div class="col-md-12">
+        <h3>Comments:</h3>
+        <hr/>
+          <%= form_for([@recipe, @comment], :html=>{class: 'form-horizantal', role: 'form'}) do |f| %>
+          <div class="form-group row">
+              <div class="control-label col-sm-2">
+                  <%= f.label :Description, 'Comment', class: 'fw-bold match-color' %>
+              </div>
+              <div class="col-md-7">
+                  <%= f.text_area :content, rows: 8, placeholder: 'Enter comment here', class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="offset-md-2 col-md-10">
+                  <%= f.submit "Post comment", class: "btn btn-danger btn-sm btn-bg col-3" %>
+              </div>
+          </div>
+          <% end %>
+          <hr/>
+      </div>
+  </div>
+<%end%>
+
+<% if @recipe.comments.any? %>
+  <div class="row">
+    <h3 class="offset-2 mt-2 match-color">Previous Comments: </h3>
+    <div id="messages">
+      <%= render 'comments/comments', object: @comments %>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="offset-2 col-md-8 mt-2">
+      <h3 class="match-color">No Comments Yet!</h3>
+      </div>
+  </div>
+<% end %>

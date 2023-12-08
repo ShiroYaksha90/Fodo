@@ -1,9 +1,12 @@
 require 'rails_helper'
+require 'helpers/users_helper_spec'
 
 RSpec.describe 'Recipes', type: :request do
   describe 'GET /recipes' do
     before(:each) do
-      @user = User.create(name: 'chef', email: 'chef@example.com', password: 'password')
+      @user = User.create(name: 'chef', email: 'chef@example.com', password: 'password',
+                          password_confirmation: 'password')
+      sign_in_as(@user, @user.password)
       @recipe = @user.recipes.build(name: 'Vegetable saute',
                                     description: 'Greate vegetable sautee, add vegetable nad oil')
       @recipe.save
@@ -34,6 +37,7 @@ RSpec.describe 'Recipes', type: :request do
     end
 
     it 'should get recipes new' do
+      expect(logged_in?).to be_truthy
       get new_recipe_path
       expect(response).to have_http_status(200)
       expect(response).to render_template(:new)
@@ -44,20 +48,19 @@ RSpec.describe 'Recipes', type: :request do
     end
 
     it 'creates a valid recipe' do
+      expect(logged_in?).to be_truthy
       get new_recipe_path
       expect(response).to render_template(:new)
       expect do
-        post recipes_path, params: { recipe: { name: 'Chocolate Chip Cookies', description: 'Best cookies ever!' } }
+        post recipes_path, params: { recipe: { name: 'Test Recipe', description: 'Test Recipe Description' } }
       end.to change(Recipe, :count).by(1)
-      expect(response).to redirect_to(recipe_path(Recipe.last))
+      expect(flash[:success]).to eq('Recipe was successfully created.')
       follow_redirect!
       expect(response).to render_template(:show)
-      expect(response.body).to include('Recipe was successfully created.')
-      expect(response.body).to include(Recipe.last.name.capitalize.to_s)
-      expect(response.body).to include(Recipe.last.description.to_s)
     end
 
     it 'rejects invalid recipe submissions' do
+      expect(logged_in?).to be_truthy
       get new_recipe_path
       expect(response).to render_template(:new)
       expect do

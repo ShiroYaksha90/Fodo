@@ -15,6 +15,15 @@
  */
 @import 'bootstrap';
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 #logo {
   background-image:
     -webkit-repeating-linear-gradient(
@@ -163,4 +172,33 @@ footer ul li {
 .back-link:hover {
   color: #222;
   text-decoration: underline;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination .page-link {
+  color: #073b15 !important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #1e766c2d !important;
+  border-color: #1e766b !important;
+}
+
+.listing {
+  list-style: none;
+  padding-left: 0;
+}
+
+.chef-title {
+  color: #073b15;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+.input_checkbox input {
+  width: auto;
 }

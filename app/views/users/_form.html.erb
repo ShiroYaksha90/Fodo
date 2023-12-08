@@ -1,0 +1,47 @@
+<%= render 'shared/errors', obj: @user %>
+<div class="row">
+    <div class="col-md-12">
+        <%= form_for(@user, :html=>{class: 'form-horizantal', role: 'form'}) do |f| %>
+        <div class="form-group row">
+            <div class="control-label col-3 col-md-2">
+                <%= f.label :Name, class: 'fw-bold match-color'%>
+            </div>
+            <div class="col-md-8">
+                <%= f.text_field :name, placeholder: 'Full Name', class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="control-label col-3 col-md-2">
+                <%= f.label :Email, class: 'fw-bold match-color' %>
+            </div>
+            <div class="col-md-8">
+                <%= f.email_field :email, rows: 10, placeholder: 'Enter your email', class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="control-label col-3 col-md-2">
+                <%= f.label :Password, class: 'fw-bold match-color' %>
+            </div>
+            <div class="col-md-8">
+                <%= f.password_field :password, rows: 10, placeholder: 'Enter your password', class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="control-label col-3 col-md-2">
+                <%= f.label :Confirm_password, class: 'fw-bold match-color' %>
+            </div>
+            <div class="col-md-8">
+                <%= f.password_field :password_confirmation, rows: 10, placeholder: 'Confirm your password', class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="offset-md-2 col-md-10">
+                <%= f.submit( @user.new_record? ? "Create account" : "Update account", class: "btn btn-danger btn-lg btn-bg col-6 col-md-4") %>
+            </div>
+        </div>
+        <% end %>
+        <div class='col-md-4 offset-1 fs-4'>
+            [ <%= link_to 'Back', root_path, class: 'match-color back-link' %> ]
+        </div>
+    </div>
+</div>

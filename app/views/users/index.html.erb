@@ -1,0 +1,4 @@
+<%= render 'shared/page_title', title: 'Showing all chefs' %>
+<%= paginate @users, theme: 'my_custom_theme', window: 3 %>
+<%= render 'user', obj: @users %>
+<%= paginate @users, theme: 'my_custom_theme', window: 3 %>

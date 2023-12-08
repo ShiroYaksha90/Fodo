@@ -1,10 +1,15 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show edit update]
+  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :logged_in_user, only: %i[edit update destroy]
+  before_action :require_user, except: %i[index show]
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.order(:name).page params[:page]
   end
 
-  def show; end
+  def show
+    @comment = Comment.new
+    @comments = @recipe.comments.order(:content).page params[:page]
+  end
 
   def new
     @recipe = Recipe.new
@@ -12,7 +17,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.user = User.first
+    @recipe.user = current_user
     if @recipe.save
       flash[:success] = 'Recipe was successfully created.'
       redirect_to recipe_path(@recipe)
@@ -47,6 +52,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description)
+    params.require(:recipe).permit(:name, :description, ingredient_ids: [])
   end
 end

@@ -1,0 +1,19 @@
+<div align="center">
+  <% @ingredients.each do |ingredient| %>
+    <ul class="listing">
+      <div class="row d-block">
+        <div class="card col-10 col-sm-8 col-md-6 gap-1 p-2 align-self-center">
+          <li class="chef-title"><%= link_to ingredient.name.capitalize, 
+                                         ingredient_path(ingredient) %></li>
+    <li><small><%= pluralize(ingredient.recipes.count, "recipe") if ingredient.recipes %>
+            </small></li>
+        <li class="col-4 col-sm-4 align-self-center">
+          <% if logged_in? and current_user.admin? %>
+            <%= link_to 'Edit this ingredient', edit_ingredient_path(ingredient), class: 'btn btn-warning btn-sm btn-bg text-white w-100' %>
+          <%end%>
+        </li>
+        </div>
+      </div>
+    </ul>      
+  <% end %>
+</div>
