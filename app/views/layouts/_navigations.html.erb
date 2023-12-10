@@ -62,7 +62,7 @@
                                 edit_user_path(current_user), class: 'dropdown-item' %></li>
               <li><a href="#" class="dropdown-item">Something else here</a></li>
               <hr role="separator" class="divider"/>
-              <li><%= link_to "Log out", logout_path,data: {"turbo-method": :delete }, class: 'dropdown-item' %></li>
+              <li><%= button_to "Log out", logout_path, method: :delete, data: {"turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
             </ul>
           </li>
         <% else %>
