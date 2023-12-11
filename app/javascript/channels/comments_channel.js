@@ -1,4 +1,4 @@
-import consumer from "./consumer"
+import consumer from "./consumer";
 
 consumer.subscriptions.create("CommentsChannel", {
   connected() {
@@ -10,6 +10,9 @@ consumer.subscriptions.create("CommentsChannel", {
   },
 
   received(data) {
-    $('#messages').prepend(data)
-  }
+    // console.log(data);
+    $("#messages").prepend(data);
+    $("#comment_input").val("");
+
+  },
 });
