@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      ActionCable.server.broadcast 'comments_channel', render(partial: 'comments/comment', object: @comment )
+      ActionCable.server.broadcast 'comments_channel', render(partial: 'comments/comment', object: @comment)
       # flash[:success] = 'Comment was created successfully'
       # redirect_to recipe_path(@recipe)
     else
