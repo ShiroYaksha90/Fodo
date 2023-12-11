@@ -4,4 +4,4 @@
 //= require bootstrap
 import "@hotwired/turbo-rails"
 import "controllers"
-import "./channels"
+import "./channels/comments_channel"
