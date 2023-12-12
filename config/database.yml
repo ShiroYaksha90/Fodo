@@ -90,3 +90,4 @@ production:
   database: foodo_production
   username: foodo
   password: <%= ENV["FOODO_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
