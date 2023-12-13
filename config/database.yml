@@ -88,6 +88,3 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
-  database: foodo_production
-  username: foodo
-  password: <%= ENV["FOODO_DATABASE_PASSWORD"] %>
