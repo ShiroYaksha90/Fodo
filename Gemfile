@@ -32,7 +32,10 @@ gem 'stimulus-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem 'redis'
+
+# Use hiredis to get better performance than the "redis" gem
+gem 'hiredis'
 
 gem 'actioncable', '~> 7.0'
 
