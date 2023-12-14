@@ -10,7 +10,7 @@
               <p class="text-start">Ingredients: <%= render @recipe.ingredients %></p>
             <%end%>
             <div class="row">
-                <div class="text-start d-flex gap-2">
+                <div class="text-start d-flex gap-1">
                   <% if logged_in? && (current_user == @recipe.user || current_user.admin?) %>
                     <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-xs btn-warning btn-bg text-white' %>
                     <%= button_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger btn-bg text-white' %>
@@ -56,7 +56,7 @@
           </div>
           <div class="form-group">
               <div class="offset-md-2 col-md-10">
-                  <%= f.submit "Post comment", class: "btn btn-danger btn-sm btn-bg col-3" %>
+                  <%= f.submit "Post comment", class: "btn btn-danger btn-sm btn-bg" %>
               </div>
           </div>
           <% end %>
