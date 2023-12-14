@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <%= form_for(@recipe, :html=>{class: 'form-horizantal', role: 'form'}) do |f| %>
         <div class="form-group row">
-            <div class="control-label col-sm-1">
+            <div class="control-label col-md-2">
                 <%= f.label :Title, class: 'fw-bold match-color'%>
             </div>
             <div class="col-md-8">
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="control-label col-sm-1">
+            <div class="control-label col-md-2">
                 <%= f.label :Description, class: 'fw-bold match-color' %>
             </div>
             <div class="col-md-8">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="offset-1 col-md-8 d-flex gap-3 mb-3">
+            <div class="offset-md-2 col-md-8 d-flex gap-3 mb-3 flex-wrap">
                 <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cb| %>
                     <% cb.label(class: 'checkbox-inline input_checkbox d-flex gap-1'){cb.check_box(class: "checkbox") + cb.text}%>
                 <%end%>
@@ -27,11 +27,11 @@
         </div>
         <div class="form-group">
             <div class="offset-md-1 col-md-10">
-                <%= f.submit "Submit", class: "btn btn-danger btn-lg btn-bg col-3" %>
+                <%= f.submit "Submit", class: "btn btn-danger btn-lg btn-bg offset-md-1" %>
             </div>
         </div>
         <% end %>
-        <div class='col-md-4 offset-1 fs-4'>
+        <div class='col-md-4 offset-md-2 fs-4'>
             [ <%= link_to 'Back', recipes_path, class: 'match-color back-link' %> ]
         </div>
     </div>
