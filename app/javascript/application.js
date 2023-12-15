@@ -3,5 +3,6 @@
 //= require rails-ujs
 //= require bootstrap
 import "@hotwired/turbo-rails"
+Turbo.session.drive = false
 import "controllers"
 import "./channels/comments_channel"
