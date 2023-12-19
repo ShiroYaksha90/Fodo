@@ -5,9 +5,12 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      respond_to do |format|
-        format.html { redirect_to recipe_path(@recipe.id), flash: { success: 'Comment was created successfully' } }
-        format.turbo_stream
+        # ActionCable.server.broadcast "comments", render(partial: 'comments/comment', object: @comment)
+        respond_to do |format|
+          format.html do
+            redirect_to @recipe, flash: { success: 'Comment was created successfully' }
+          format.js
+        end
       end
     else
         flash[:danger] = 'Comment was not created'
