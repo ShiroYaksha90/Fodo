@@ -6,11 +6,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       ActionCable.server.broadcast 'comments_channel', render(partial: 'comments/comment', object: @comment)
-      # flash[:success] = 'Comment was created successfully'
-      # redirect_to recipe_path(@recipe)
     else
       flash[:danger] = 'Comment was not created'
-      redirect_to recipe_path(@recipe.id), status: :unprocessable_entity
+      redirect_to recipe_path(@recipe), status: :unprocessable_entity
     end
   end
 

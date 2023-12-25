@@ -7,7 +7,7 @@
     <div class="col-md-8 card bg-light mx-3 col-11 my-2">
         <p class="mt-2"><%= comment.content%></p>
         <p>
-            <span class="quiet"><small>Created at: <%= time_ago_in_words(comment.created_at) %> ago by
+            <span class="quiet"><small>Posted: <%= time_ago_in_words(comment.created_at) %> ago by
                                                                         <%= comment.user.name %></small></span>
         </p>
     </div>
