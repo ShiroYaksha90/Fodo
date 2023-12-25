@@ -5,10 +5,10 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-        ActionCable.server.broadcast "comments_channel", render(partial: 'comments/comment', object: @comment)
+      ActionCable.server.broadcast 'comments_channel', render(partial: 'comments/comment', object: @comment)
     else
-        flash[:danger] = 'Comment was not created'
-        redirect_to recipe_path(@recipe), status: :unprocessable_entity
+      flash[:danger] = 'Comment was not created'
+      redirect_to recipe_path(@recipe), status: :unprocessable_entity
     end
   end
 
