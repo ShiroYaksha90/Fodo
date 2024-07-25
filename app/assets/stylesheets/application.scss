@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-@import 'bootstrap';
+@import "bootstrap";
 
 html,
 body {
@@ -25,25 +25,26 @@ body {
 }
 
 #logo {
-  background-image:
-    -webkit-repeating-linear-gradient(
+  background-image: -webkit-repeating-linear-gradient(
       top,
       hsla(0, 0%, 100%, 0) 0%,
       hsla(0, 0%, 100%, 0) 3%,
       hsla(0, 0%, 100%, 0.1) 4.5%
     ),
-    -webkit-repeating-linear-gradient(
-      top,
-      hsla(0, 0%, 0%, 0) 0%,
-      hsla(0, 0%, 0%, 0) 2%,
-      hsla(0, 0%, 0%, 0.03) 2.5%
-    ),
-    -webkit-repeating-linear-gradient(
-      top,
-      hsla(0, 0%, 100%, 0) 0%,
-      hsla(0, 0%, 100%, 0) 0.6%,
-      hsla(0, 0%, 100%, 0.15) 1.2%
-    ),
+    -webkit-repeating-linear-gradient(top, hsla(0, 0%, 0%, 0) 0%, hsla(
+            0,
+            0%,
+            0%,
+            0
+          )
+          2%, hsla(0, 0%, 0%, 0.03) 2.5%),
+    -webkit-repeating-linear-gradient(top, hsla(0, 0%, 100%, 0) 0%, hsla(
+            0,
+            0%,
+            100%,
+            0
+          )
+          0.6%, hsla(0, 0%, 100%, 0.15) 1.2%),
     linear-gradient(
       80deg,
       #a6a6a6 0%,
@@ -87,7 +88,7 @@ body {
 }
 
 .jumbotron {
-  background-image: url('cover-image002.png');
+  background-image: url("cover-image002.png");
   background-size: cover;
   height: 300px;
 }
