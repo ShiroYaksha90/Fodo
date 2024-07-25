@@ -10,3 +10,26 @@ User.create!(name: 'Admin User',
             password: 'password',
             password_confirmation: 'password',
             admin: true)
+
+99.times do |n|
+  name = Faker::Name.name
+  email = "example-#{n+1}@example.com"
+  password = 'password'
+  User.create!(name: name,
+              email: email,
+              password: password,
+              password_confirmation: password)
+end
+
+users = User.all
+users[2..20].each do |user|
+  name = Faker::Food.dish
+  description = Faker::Food.description
+  r = Recipe.create!(name: name,
+                    description: description,
+                    user_id: user.id)
+  3.times do
+    ingredient = Faker::Food.ingredient
+    r.ingredients.create(name: ingredient)
+  end
+end
